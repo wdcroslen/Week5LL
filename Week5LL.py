@@ -141,11 +141,51 @@ class SinglyLinkedList:
             while temp is not None:
                 print(temp.item)
                 temp = temp.next 
-    
+     def reverse(self): 
+        prev = None
+        temp = self.head 
+        while(temp is not None): 
+            next = temp.next
+            temp.next = prev 
+            prev = temp 
+            temp = next
+        self.head = prev
+        
+    def deleteDuplicates(self):
+        temp = self.head
+        while temp.next is not None:
+            if temp.item == temp.next.item:
+               self.remove(self.getIndexOf(temp.item))
+            temp=temp.next
+            
+    def has_cycle(self): 
+        dict = {}
+        finish = False
+        temp = self.head
+        while finish != True:
+            if temp.next is None:
+                return False
+            if temp in dict:
+                return True
+            else:
+                dict[temp] = 1
+            temp=temp.next
+            
+                #if node has been visited
+                #return true when next = None or in Dict
+
+                
+    def create_cycle(self):
+        temp = self.head
+        while temp.next is not None:
+            temp = temp.next
+        temp.next = self.head
+
 
 ll = SinglyLinkedList()
 #ll.append
 ll.addFirst(5)
+print("CONTAINS", ll.contains(5))
 ll.addFirst(4)
 ll.addFirst(3)
 ll.add(1,1000)
@@ -177,6 +217,29 @@ ll.addFirst(3)
 ll.addLast(7777)
 ll.addFirst(2)
 ll.addFirst(1)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(2)
+ll.addFirst(1)
 ll.printList()
 ll.removeLast()
+ll.reverse()
+#ll.bubble()
 ll.printList()
+ll.deleteDuplicates()
+ll.printList()
+ll.create_cycle()
+print("HAS CYCLE",ll.has_cycle())
+if ll.has_cycle() == False:
+    ll.printList()
